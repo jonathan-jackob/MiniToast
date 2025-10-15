@@ -10,7 +10,7 @@
  */
 class MiniToast {
   constructor(configParams = {}) {
-    this.border = true;
+    this.border = false;
     this.elementRoot = "#toast-container";
     this.classes = {
       root: "toast--root",
@@ -30,6 +30,7 @@ class MiniToast {
     this.width = "280";
     this.timeToastsShow = 500;
 
+    this.showIcon = true;
     this.icon_success =
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-8.69"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
     this.icon_error =
@@ -53,11 +54,12 @@ MiniToast.prototype.config = function ({
   icon_info = null,
   icon_success = null,
   icon_warning = null,
+  showIcon = null,
   timeToastsShow = null,
   vertical = null,
   width = null,
 }) {
-  if (border && typeof border === "boolean") {
+  if (typeof border === "boolean") {
     this.border = border;
   }
 
@@ -87,6 +89,10 @@ MiniToast.prototype.config = function ({
 
   if (icon_warning && typeof icon_warning === "string") {
     this.icon_warning = icon_warning;
+  }
+
+  if (typeof showIcon === "boolean") {
+    this.showIcon = showIcon;
   }
 
   if (vertical && typeof vertical === "string") {
@@ -127,14 +133,13 @@ MiniToast.prototype.toast_create = function () {
   elementRoot.appendChild(this.container);
 };
 
-MiniToast.prototype.toast_item_container = function (variant, width = null) {
+MiniToast.prototype.toast_item_container = function (variant, width = null, border) {
   if (!variant) {
     console.error("Toast: variant is required");
     return;
   }
   const containerToast = document.createElement("div");
   containerToast.className = this.classes.itemContainer;
-  containerToast.className += " " + this.classes.show;
   containerToast.className += " " + variant;
 
   if (width) {
@@ -143,7 +148,7 @@ MiniToast.prototype.toast_item_container = function (variant, width = null) {
     containerToast.style.width = this.width + "px";
   }
 
-  if (this.border) {
+  if (border) {
     containerToast.className += " " + this.classes.border;
   }
 
@@ -209,7 +214,10 @@ MiniToast.prototype.add = function ({
   message = "",
   duration = this.duration,
   onClose = () => {},
+  onOpen = () => {},
   width = null,
+  showIcon = this.showIcon,
+  border = this.border,
 }) {
   if (this.container === false) {
     console.error("Toast: container is required");
@@ -226,11 +234,11 @@ MiniToast.prototype.add = function ({
   }
 
   const totalToast = this.container.childNodes.length;
-  const containerItemToast = this.toast_item_container(variant, width);
+  const containerItemToast = this.toast_item_container(variant, width, border);
   const text = this.toast_item_text(title, message, variant);
-  const icon = this.toast_item_icon(variant);
 
-  if (icon) {
+  if (showIcon) {
+    const icon = this.toast_item_icon(variant);
     containerItemToast.appendChild(icon);
   }
 
@@ -239,6 +247,10 @@ MiniToast.prototype.add = function ({
   }
 
   this.container.appendChild(containerItemToast);
+  onOpen();
+  setTimeout(() => {
+    containerItemToast.classList.add(this.classes.show);
+  }, 10);
 
   const closeToast = duration + totalToast * 500;
 
@@ -249,6 +261,98 @@ MiniToast.prototype.add = function ({
       onClose();
     }, 500);
   }, closeToast);
+};
+
+MiniToast.prototype.success = function ({
+  title = "",
+  message = "",
+  duration = this.duration,
+  onClose = () => {},
+  onOpen = () => {},
+  width = null,
+  showIcon = this.showIcon,
+  border = this.border,
+}) {
+  this.add({
+    variant: "success",
+    title: title,
+    message: message,
+    duration: duration,
+    onClose: onClose,
+    onOpen: onOpen,
+    width: width,
+    showIcon: showIcon,
+    border: border,
+  });
+};
+
+MiniToast.prototype.info = function ({
+  title = "",
+  message = "",
+  duration = this.duration,
+  onClose = () => {},
+  onOpen = () => {},
+  width = null,
+  showIcon = this.showIcon,
+  border = this.border,
+}) {
+  this.add({
+    variant: "info",
+    title: title,
+    message: message,
+    duration: duration,
+    onClose: onClose,
+    onOpen: onOpen,
+    width: width,
+    showIcon: showIcon,
+    border: border,
+  });
+};
+
+MiniToast.prototype.warning = function ({
+  title = "",
+  message = "",
+  duration = this.duration,
+  onClose = () => {},
+  onOpen = () => {},
+  width = null,
+  showIcon = this.showIcon,
+  border = this.border,
+}) {
+  this.add({
+    variant: "warning",
+    title: title,
+    message: message,
+    duration: duration,
+    onClose: onClose,
+    onOpen: onOpen,
+    width: width,
+    showIcon: showIcon,
+    border: border,
+  });
+};
+
+MiniToast.prototype.error = function ({
+  title = "",
+  message = "",
+  duration = this.duration,
+  onClose = () => {},
+  onOpen = () => {},
+  width = null,
+  showIcon = this.showIcon,
+  border = this.border,
+}) {
+  this.add({
+    variant: "error",
+    title: title,
+    message: message,
+    duration: duration,
+    onClose: onClose,
+    onOpen: onOpen,
+    width: width,
+    showIcon: showIcon,
+    border: border,
+  });
 };
 
 MiniToast.prototype.remove = function () {

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toast all configuration</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../dist/css/app.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        min-height: 100vh;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        height: 50px;
+      }
+
+      .btn-success {
+        background-color: #15803d;
+      }
+      .btn-success:hover {
+        background-color: #15803d;
+      }
+
+      .btn-info {
+        background-color: #2563eb;
+      }
+
+      .btn-info:hover {
+        background-color: #2563eb;
+      }
+
+      .btn-warning {
+        background-color: #dc7609;
+      }
+
+      .btn-warning:hover {
+        background-color: #dc7609;
+      }
+
+      .btn-error {
+        background-color: #dc2626;
+      }
+
+      .btn-error:hover {
+        background-color: #dc2626;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="toast-container"></div>
+
+    <div class="buttons">
+      <button id="btn-success" class="btn-success">Success</button>
+      <button id="btn-info" class="btn-info">Info</button>
+      <button id="btn-warning" class="btn-warning">Warning</button>
+      <button id="btn-error" class="btn-error">Error</button>
+    </div>
+
+    <script src="../dist/js/app.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toast = new MiniToast({
+          border: true, // show left border
+          elementRoot: "#toast-container", // id of the root element
+          classes: {
+            // classes of the toast
+            root: "toast--root", // class of the root element
+            container: "toast__container", // class of the container
+            itemContainer: "toast__item--container", // class of the item container
+            icon: "toast__item--icon", // class of the icon
+            title: "toast__item--title", // class of the title
+            message: "toast__item--message", // class of the message
+            textContainer: "toast__item--text-container", // class of the text container
+            border: "toast__item--border", // class of the border
+            show: "show", // class of the show
+          },
+          duration: 6000, // duration of the toast
+          container: false, // container of the toast
+          horizontal: "right", // horizontal position of the toast
+          vertical: "top", // vertical position of the toast
+          width: "280", // width of the toast
+          timeToastsShow: 500, // time to show the toast per toast in DOM render
+
+          showIcon: true, // show icon
+          // icons default, send your own icons, MiniToast insert the icon in the toast as HTML
+          icon_success:
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-8.69"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>',
+          icon_error:
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>',
+          icon_warning:
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>',
+          icon_info:
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>',
+        });
+
+        document.getElementById("btn-success").addEventListener("click", () => {
+          toast.add({
+            variant: "success",
+            title: "Success",
+            message: "This is a success message",
+            onClose: () => {},
+            width: 250,
+          });
+        });
+
+        document.getElementById("btn-info").addEventListener("click", () => {
+          toast.add({
+            variant: "info",
+            title: "Info",
+            message: "This is an info message",
+            onClose: () => {
+              console.log("close error toast");
+            },
+          });
+        });
+
+        document.getElementById("btn-warning").addEventListener("click", () => {
+          toast.add({
+            variant: "warning",
+            title: "Warning",
+            message: "This is a warning message",
+            onClose: () => {},
+          });
+        });
+
+        document.getElementById("btn-error").addEventListener("click", () => {
+          toast.add({
+            variant: "error",
+            title: "Error",
+            message: "This is an error message",
+            onClose: () => {},
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
