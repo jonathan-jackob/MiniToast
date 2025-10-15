@@ -6,11 +6,7 @@ MiniToast es una librería ligera de JavaScript para mostrar notificaciones tipo
 
 No requiere instalación adicional si usas el código fuente directamente. Para usar como módulo npm, instala desde el directorio:
 
-```bash
-npm install /path/to/minitoast
-```
-
-O incluye los archivos compilados en tu proyecto:
+Incluye los archivos compilados en tu proyecto:
 
 ```html
 <link rel="stylesheet" href="dist/css/app.css" />
@@ -20,16 +16,18 @@ O incluye los archivos compilados en tu proyecto:
 ## Uso Básico
 
 1. Crea un contenedor en tu HTML:
+
    ```html
    <div id="toast-container"></div>
    ```
 
 2. Inicializa MiniToast:
+
    ```javascript
    const toast = new MiniToast({
      elementRoot: "#toast-container",
      horizontal: "right",
-     vertical: "top"
+     vertical: "top",
    });
    ```
 
@@ -37,7 +35,7 @@ O incluye los archivos compilados en tu proyecto:
    ```javascript
    toast.success({
      title: "Éxito",
-     message: "Operación completada"
+     message: "Operación completada",
    });
    ```
 
@@ -50,16 +48,16 @@ O incluye los archivos compilados en tu proyecto:
 
 ## Opciones de Configuración
 
-| Opción | Tipo | Descripción | Default |
-|--------|------|-------------|---------|
-| `elementRoot` | string | Selector CSS del contenedor. | "#toast-container" |
-| `horizontal` | string | Posición horizontal: "left", "center", "right". | "right" |
-| `vertical` | string | Posición vertical: "top", "bottom". | "top" |
-| `duration` | number | Duración en ms antes de ocultar. | 6000 |
-| `width` | number | Ancho del toast en px. | 280 |
-| `showIcon` | boolean | Mostrar íconos. | true |
-| `border` | boolean | Agregar borde izquierdo. | false |
-| `classes` | object | Clases CSS personalizadas. | Ver código fuente |
+| Opción        | Tipo    | Descripción                                     | Default            |
+| ------------- | ------- | ----------------------------------------------- | ------------------ |
+| `elementRoot` | string  | Selector CSS del contenedor.                    | "#toast-container" |
+| `horizontal`  | string  | Posición horizontal: "left", "center", "right". | "right"            |
+| `vertical`    | string  | Posición vertical: "top", "bottom".             | "top"              |
+| `duration`    | number  | Duración en ms antes de ocultar.                | 6000               |
+| `width`       | number  | Ancho del toast en px.                          | 280                |
+| `showIcon`    | boolean | Mostrar íconos.                                 | true               |
+| `border`      | boolean | Agregar borde izquierdo.                        | false              |
+| `classes`     | object  | Clases CSS personalizadas.                      | Ver código fuente  |
 
 ## Métodos
 
@@ -76,14 +74,22 @@ Ve los ejemplos en el directorio `examples/` para usos avanzados como diferentes
 
 ## Desarrollo
 
-Para construir:
+Para construir los archivos:
+
 ```bash
 npm run build
 ```
 
-Para desarrollo:
+Para realizar cambios y compilar:
+
 ```bash
 npm run dev
+```
+
+Para desarrollar y compilar cada vez que se realice un cambio:
+
+```bash
+npm run watch
 ```
 
 ## Licencia
