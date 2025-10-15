@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="dist/css/app.css" />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        min-height: 100vh;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        height: 50px;
+      }
+
+      .btn-success {
+        background-color: #15803d;
+      }
+      .btn-success:hover {
+        background-color: #15803d;
+      }
+
+      .btn-info {
+        background-color: #2563eb;
+      }
+
+      .btn-info:hover {
+        background-color: #2563eb;
+      }
+
+      .btn-warning {
+        background-color: #dc7609;
+      }
+
+      .btn-warning:hover {
+        background-color: #dc7609;
+      }
+
+      .btn-error {
+        background-color: #dc2626;
+      }
+
+      .btn-error:hover {
+        background-color: #dc2626;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="toast-container"></div>
+
+    <div class="buttons">
+      <button id="btn-success" class="btn-success">Success</button>
+      <button id="btn-info" class="btn-info">Info</button>
+      <button id="btn-warning" class="btn-warning">Warning</button>
+      <button id="btn-error" class="btn-error">Error</button>
+    </div>
+
+    <script src="dist/js/app.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toast = new MiniToast();
+
+        document.getElementById("btn-success").addEventListener("click", () => {
+          toast.add({
+            variant: "success",
+            title: "Success",
+            message: "This is a success message",
+            onClose: () => {},
+            width: 250,
+          });
+        });
+
+        document.getElementById("btn-info").addEventListener("click", () => {
+          toast.add({
+            variant: "info",
+            title: "Info",
+            message: "This is an info message",
+            onClose: () => {
+              console.log("close error toast");
+            },
+          });
+        });
+
+        document.getElementById("btn-warning").addEventListener("click", () => {
+          toast.add({
+            variant: "warning",
+            title: "Warning",
+            message: "This is a warning message",
+            onClose: () => {},
+          });
+        });
+
+        document.getElementById("btn-error").addEventListener("click", () => {
+          toast.add({
+            variant: "error",
+            title: "Error",
+            message: "This is an error message",
+            onClose: () => {},
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
