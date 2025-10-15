@@ -10,10 +10,10 @@
     "dev": "npx mix",
     "watch": "npx mix watch"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["toast", "notification", "javascript", "ui", "component", "alert"],
+  "author": "Jonathan Jacob",
   "license": "ISC",
-  "description": "",
+  "description": "MiniToast es una librería ligera de JavaScript para mostrar notificaciones tipo toast con estilos personalizables. Soporta variantes como success, error, warning e info, con opciones de configuración flexibles para posición, duración, íconos y más.",
   "devDependencies": {
     "laravel-mix": "^6.0.49",
     "resolve-url-loader": "^5.0.0",
