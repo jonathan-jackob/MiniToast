@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Inicio",
+    "url": "index.html"
+  },
+  {
+    "title": "Todas las Configuraciones",
+    "url": "toast-all-configuration.html"
+  },
+  {
+    "title": "Métodos de Mostrar",
+    "url": "toast-show-methods.html"
+  },
+  {
+    "title": "Tamaños",
+    "url": "toast-sizes.html"
+  },
+  {
+    "title": "Con Borde Izquierdo",
+    "url": "toast-with-border-left.html"
+  },
+  {
+    "title": "Sin Iconos",
+    "url": "toast-without-icons.html"
+  }
+]

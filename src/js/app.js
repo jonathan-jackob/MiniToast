@@ -54,26 +54,26 @@ class MiniToast {
   }
 }
 
-  /**
-   * Configura las opciones de la instancia de MiniToast.
-   *
-   * @method config
-   * @param {Object} options - Objeto con opciones de configuración.
-   * @param {boolean} [options.border] - Agregar borde izquierdo al toast.
-   * @param {Object} [options.classes] - Clases CSS personalizadas.
-   * @param {number} [options.duration] - Duración en ms antes de ocultar el toast (default: 6000).
-   * @param {string} [options.elementRoot] - Selector CSS del contenedor raíz.
-   * @param {string} [options.horizontal] - Posición horizontal: "left", "center", "right".
-   * @param {string} [options.icon_error] - HTML del ícono para errores.
-   * @param {string} [options.icon_info] - HTML del ícono para información.
-   * @param {string} [options.icon_success] - HTML del ícono para éxito.
-   * @param {string} [options.icon_warning] - HTML del ícono para advertencias.
-   * @param {boolean} [options.showIcon] - Mostrar íconos en los toasts.
-   * @param {number} [options.timeToastsShow] - Tiempo de animación en ms.
-   * @param {string} [options.vertical] - Posición vertical: "top", "bottom".
-   * @param {number} [options.width] - Ancho del toast en px.
-   * @returns {void}
-   */
+/**
+ * Configura las opciones de la instancia de MiniToast.
+ *
+ * @method config
+ * @param {Object} options - Objeto con opciones de configuración.
+ * @param {boolean} [options.border] - Agregar borde izquierdo al toast.
+ * @param {Object} [options.classes] - Clases CSS personalizadas.
+ * @param {number} [options.duration] - Duración en ms antes de ocultar el toast (default: 6000).
+ * @param {string} [options.elementRoot] - Selector CSS del contenedor raíz.
+ * @param {string} [options.horizontal] - Posición horizontal: "left", "center", "right".
+ * @param {string} [options.icon_error] - HTML del ícono para errores.
+ * @param {string} [options.icon_info] - HTML del ícono para información.
+ * @param {string} [options.icon_success] - HTML del ícono para éxito.
+ * @param {string} [options.icon_warning] - HTML del ícono para advertencias.
+ * @param {boolean} [options.showIcon] - Mostrar íconos en los toasts.
+ * @param {number} [options.timeToastsShow] - Tiempo de animación en ms.
+ * @param {string} [options.vertical] - Posición vertical: "top", "bottom".
+ * @param {number} [options.width] - Ancho del toast en px.
+ * @returns {void}
+ */
 MiniToast.prototype.config = function ({
   border = null,
   classes = null,
@@ -238,22 +238,22 @@ MiniToast.prototype.toast_item_text = function (title, message, variant) {
   return containerToastItemText;
 };
 
-  /**
-   * Agrega un toast personalizado con las opciones especificadas.
-   *
-   * @method add
-   * @param {Object} options - Opciones para el toast.
-   * @param {string} options.variant - Variante del toast: "success", "error", "warning", "info".
-   * @param {string} options.title - Título del toast.
-   * @param {string} options.message - Mensaje del toast.
-   * @param {number} [options.duration] - Duración en ms (usa valor de instancia si no se proporciona).
-   * @param {Function} [options.onClose] - Callback al cerrar el toast.
-   * @param {Function} [options.onOpen] - Callback al abrir el toast.
-   * @param {number} [options.width] - Ancho personalizado en px.
-   * @param {boolean} [options.showIcon] - Mostrar ícono (usa valor de instancia).
-   * @param {boolean} [options.border] - Agregar borde (usa valor de instancia).
-   * @returns {void}
-   */
+/**
+ * Agrega un toast personalizado con las opciones especificadas.
+ *
+ * @method add
+ * @param {Object} options - Opciones para el toast.
+ * @param {string} options.variant - Variante del toast: "success", "error", "warning", "info".
+ * @param {string} options.title - Título del toast.
+ * @param {string} options.message - Mensaje del toast.
+ * @param {number} [options.duration] - Duración en ms (usa valor de instancia si no se proporciona).
+ * @param {Function} [options.onClose] - Callback al cerrar el toast.
+ * @param {Function} [options.onOpen] - Callback al abrir el toast.
+ * @param {number} [options.width] - Ancho personalizado en px.
+ * @param {boolean} [options.showIcon] - Mostrar ícono (usa valor de instancia).
+ * @param {boolean} [options.border] - Agregar borde (usa valor de instancia).
+ * @returns {void}
+ */
 MiniToast.prototype.add = function ({
   variant = "success",
   title = "",
@@ -265,12 +265,14 @@ MiniToast.prototype.add = function ({
   showIcon = this.showIcon,
   border = this.border,
 }) {
+  if (!this.container) {
     console.error("Toast: container is required");
     return;
   }
 
   if (!variant) {
     console.error("Toast: variant is required");
+    return;
   }
 
   if (!title || !message) {

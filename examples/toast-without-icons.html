@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../dist/css/app.css" />
+    <link rel="stylesheet" href="assets/app.css" />
 
     <style>
       * {
@@ -72,6 +73,8 @@
     </style>
   </head>
   <body>
+    <div id="navbar"></div>
+
     <div id="toast-container"></div>
     <div id="toast-container-2"></div>
 
@@ -83,7 +86,7 @@
     </div>
 
     <script src="../dist/js/app.js"></script>
-
+    <script src="assets/app.js" defer></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const toast = new MiniToast({
